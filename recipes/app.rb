@@ -46,9 +46,9 @@ execute 'chmod_script_file' do
 end
 
 # MySQL password
-mysql_pass = default['awesome_appliance']['mysql_root_pass']
+mysql_pass = node.default['awesome_appliance']['mysql_root_pass']
 
-# Execute installer script 
+# Execute installer script
 execute "./#{script_to_run} #{mysql_pass}" do
   cwd '/Awesome-Appliance-Repair-master'
 end

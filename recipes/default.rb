@@ -8,10 +8,6 @@ require 'pp'
 platform_fam = node['platform_family']
 pp "Platform Family: #{platform_fam}"
 
-pp node.default['awesome_appliance']['github_source']
-#pp node.default.awesome_appliance.github_source
-raise 'dome!'
-
 # Update package managers
 case platform_fam
 when 'debian'
