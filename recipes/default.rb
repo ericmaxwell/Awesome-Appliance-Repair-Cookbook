@@ -3,20 +3,15 @@
 # Recipe:: default
 #
 # Copyright (c) 2015 The Authors, All Rights Reserved.
-require 'pp'
 
-platform_fam = node['platform_family']
-pp "Platform Family: #{platform_fam}"
+# DEBUG
+#require 'pp'
+#pp "Package update command: #{node.default['awesome_appliance']['apache_service_name']}"
+#pp "Apache service name: #{node.default['awesome_appliance']['package_update_command']}"
+#pp "Script to run: #{node.default['awesome_appliance']['script_to_run']}"
 
 # Update package managers
-case platform_fam
-when 'debian'
-  execute 'apt-get update'
-when 'rhel'
-  execute 'yum -y update'
-else
-  raise "Platform not supported... exiting!"
-end
+execute node.default['awesome_appliance']['package_update_command']
 
 include_recipe 'awesome_appliance::apache'
 include_recipe 'awesome_appliance::mysql'

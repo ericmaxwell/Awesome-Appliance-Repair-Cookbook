@@ -28,28 +28,17 @@ execute 'move_AAR_dir' do
   not_if{ ::File.directory?'/var/www/AAR'}
 end
 
-# Grab platform family to make future decisions
-platform_fam = node['platform_family']
-
-# Determine which install script to run
-case platform_fam
-when 'debian'
-  script_to_run = 'AARinstall.py'
-when 'rhel'
-  script_to_run = 'AARinstall-rhel.py'
-end
-
 # Make aure script has execute permissions
 execute 'chmod_script_file' do
   cwd '/Awesome-Appliance-Repair-master'
-  command "chmod +x #{script_to_run}"
+  command "chmod +x #{node.default['awesome_appliance']['script_to_run']}"
 end
 
 # MySQL password
 mysql_pass = node.default['awesome_appliance']['mysql_root_pass']
 
 # Execute installer script
-execute "./#{script_to_run} #{mysql_pass}" do
+execute "./#{node.default['awesome_appliance']['script_to_run']} #{mysql_pass}" do
   cwd '/Awesome-Appliance-Repair-master'
 end
 
