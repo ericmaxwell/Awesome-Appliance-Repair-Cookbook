@@ -29,9 +29,13 @@ execute 'move_AAR_dir' do
 end
 
 # Make aure script has execute permissions
-execute 'chmod_script_file' do
-  cwd '/Awesome-Appliance-Repair-master'
-  command "chmod +x #{node.default['awesome_appliance']['script_to_run']}"
+#execute 'chmod_script_file' do
+#  cwd '/Awesome-Appliance-Repair-master'
+#  command "chmod +x #{node.default['awesome_appliance']['script_to_run']}"
+#end
+
+file "/Awesome-Appliance-Repair-master/#{node.default['awesome_appliance']['script_to_run']}" do
+  mode '777'
 end
 
 # MySQL password
