@@ -11,11 +11,11 @@ provisioner:
 #   name: inspec
 
 platforms:
-#  - name: ubuntu-14.04
-  - name: centos65
-    driver:
-      box: learningchef/centos65
-      box_url: learningchef/centos65
+  - name: ubuntu-14.04
+#  - name: centos65
+#    driver:
+#      box: learningchef/centos65
+#      box_url: learningchef/centos65
 
 suites:
   - name: default

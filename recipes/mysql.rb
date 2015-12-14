@@ -11,4 +11,6 @@ mysql_service 'default' do
 end
 
 #execute 'su mysql'
-execute 'ln -s /var/run/mysql-default/mysqld.sock /var/run/mysqld/mysqld.sock'
+link '/var/run/mysqld/mysqld.sock' do
+  to '/var/run/mysql-default/mysqld.sock'
+end
