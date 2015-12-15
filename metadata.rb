@@ -7,3 +7,5 @@ long_description 'Installs/Configures awesome_appliance'
 version '0.1.0'
 
 depends 'mysql'
+depends 'yum'
+depends 'apt'

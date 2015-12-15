@@ -13,6 +13,15 @@
 # Update package managers
 execute node.default['awesome_appliance']['package_update_command']
 
+case node['platform_family']
+when 'debian'
+  include_recipe 'apt'
+when 'rhel'
+  yum_repository 'base' do
+    action :makecache
+  end
+end
+
 include_recipe 'awesome_appliance::apache'
 include_recipe 'awesome_appliance::mysql'
 include_recipe 'awesome_appliance::app'
